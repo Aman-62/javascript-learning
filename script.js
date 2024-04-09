@@ -219,7 +219,6 @@ if (birthYear <= 2000) {
 }
 console.log(century)
 
-*/
 
 //* Coding Challenge #2
 
@@ -247,4 +246,47 @@ if (BMIRahul > BMIVishal) {
   console.log(`Rahul's BMI (${BMIRahul}) is higher that Vishal's (${BMIVishal})!`)
 } else {
   console.log(`Vishal's BMI (${BMIVishal}) is higher that Rahul's (${BMIRahul})!`)
+}
+
+*/
+//* Multiple if_else statement
+
+let marks = 50
+
+if (marks >= 90) {
+  console.log('Grade A')
+} else if (marks >= 80) {
+  console.log('Grade B')
+} else if (marks >= 70) {
+  console.log('Grade C')
+} else if (marks >= 60) {
+  console.log('Grade D')
+} else {
+  console.log('FAIL!')
+}
+
+//* Nested if_else statement
+
+//* Question: A store gives discounts based on membership status and the amount spent. Members spending over Rs.100 get a 10% discount, non-members spending over Rs.150 get a 5% discount, and all others get no discount.
+
+let isMember = 0 // 1 for member, 0 for non-member
+let purchaseAmount = 160
+
+// check if the customer is a member
+if (isMember == 1) {
+  // member is true, check if the purchase amount is over rs.100
+  if (purchaseAmount > 100) {
+    console.log(`Discount: 10% = ${purchaseAmount * 0.1}`)
+  } else {
+    // purchase amount is rs.100 or less for a member
+    console.log('Discount: 0%')
+  }
+} else {
+  // customer is not a member
+  if (purchaseAmount > 150) {
+    console.log(`Discount: 5% = ${purchaseAmount * 0.05}`)
+  } else {
+    // purchase amount is rs.100 or less for a member
+    console.log('Discount: 0%')
+  }
 }
