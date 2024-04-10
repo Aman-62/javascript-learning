@@ -248,7 +248,6 @@ if (BMIRahul > BMIVishal) {
   console.log(`Vishal's BMI (${BMIVishal}) is higher that Rahul's (${BMIRahul})!`)
 }
 
-*/
 //* Multiple if_else statement
 
 let marks = 50
@@ -290,3 +289,117 @@ if (isMember == 1) {
     console.log('Discount: 0%')
   }
 }
+
+//* Type Conversion and Coercion
+
+//* Type Conversion
+const inputYear = "1998";
+console.log(Number(inputYear), inputYear);
+console.log(Number(inputYear) + 18);
+
+console.log(Number("Rahul"));
+console.log(typeof Number("Rahul"));
+
+console.log(String(23), 23);
+
+//* Type Coercion
+console.log("I am " + 23 + " years old");
+console.log("23" + "10");
+console.log("23" - "10" - 3);
+console.log("A23" - "10");
+
+console.log("23" < "18");
+
+let n = "1" + 1; // '11'
+n = n - 1; // '11' - 1
+console.log(n);
+
+//* 5 Falsy Values: 0, '', undefined, null, NaN
+
+console.log(Boolean(0));
+console.log(Boolean(undefined));
+console.log(Boolean(""));
+console.log(Boolean(null));
+console.log(Boolean(NaN));
+
+const money = 0;
+if (Boolean(money)) {
+  console.log("Don't spend it all ;)");
+} else {
+  console.log("You should get a job!");
+}
+
+let height = 198;
+
+if (height) {
+  console.log("YAY! Height is defined");
+} else {
+  console.log("Height is UNDEFINED");
+}
+
+//* == vs ===
+
+const age = "18";
+
+//* Check value as well as data type
+if (age === 18) console.log("You just become an adult (strict)");
+
+//* Only check value
+if (age == 18) console.log("You just become an adult (loose)");
+
+const msg = prompt("Enter you message");
+console.log(msg);
+
+if (msg == 10) {
+  console.log("You entered 10");
+}
+
+
+*/
+
+const hasDriversLicense = true; // A
+const hasGoodVision = true; // B
+
+console.log("==AND (&&)==");
+console.log(hasDriversLicense && hasGoodVision);
+
+console.log("==OR (||)==");
+console.log(hasDriversLicense || hasGoodVision);
+
+console.log("==NOT (!)==");
+console.log(!hasDriversLicense);
+console.log(!hasGoodVision);
+
+// if (hasDriversLicense && hasGoodVision) {
+//   console.log("You are able to drive");
+// } else {
+//   console.log("Someone else should drive");
+// }
+
+const isTired = false; // C
+
+if (hasDriversLicense && hasGoodVision && !isTired) {
+  console.log("You are able to drive");
+} else {
+  console.log("Someone else should drive");
+}
+
+//* Coding Challenge #3
+
+// There are two teams, TEAM-A and TEAM-B. They compete against each other 3 times. The winner with the highest **AVERAGE SCORE** wins a trophy!
+
+// Your tasks:
+// 1. Calculate the average score for each team, using the test data below
+// 2. Compare the team's average scores to determine the winner of the competition, and print it to the console. Don't forget that there can be a draw, so test for that as well (draw means they have the same average score)
+
+// TEST DATA:
+// Data 1: TEAM-A score 96, 108 and 89. TEAM-B score 88, 91 and 110
+
+// ------------------------------------------------------------------------------------------------
+
+// 3. Bonus 1: Include a requirement for a minimum score of 100. With this rule, a team only wins if it has a higher score than the other team, and the same time a score of at least 100 points. Hint: Use a logical operator to test for minimum score, as well as multiple else-if blocks
+// 4. Bonus 2: Minimum score also applies to a draw! So a draw only happens when both teams have the same score and both have a score greater or equal 100 points. Otherwise, no team wins the trophy
+
+// TEST DATA:
+// Data Bonus 1: TEAM-A score 97, 112 and 101. TEAM-B score 109, 95 and 123
+// Data Bonus 2: TEAM-A score 97, 112 and 101. TEAM-B score 109, 95 and 106
