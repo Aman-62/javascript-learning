@@ -355,8 +355,6 @@ if (msg == 10) {
 }
 
 
-*/
-
 const hasDriversLicense = true; // A
 const hasGoodVision = true; // B
 
@@ -403,3 +401,136 @@ if (hasDriversLicense && hasGoodVision && !isTired) {
 // TEST DATA:
 // Data Bonus 1: TEAM-A score 97, 112 and 101. TEAM-B score 109, 95 and 123
 // Data Bonus 2: TEAM-A score 97, 112 and 101. TEAM-B score 109, 95 and 106
+
+// const scoreTeamA = (96 + 108 + 89) / 3;
+// const scoreTeamB = (88 + 91 + 110) / 3;
+
+// console.log(scoreTeamA, scoreTeamB);
+
+// if (scoreTeamA > scoreTeamB) {
+//   console.log("Team A is the winner");
+// } else if (scoreTeamA < scoreTeamB) {
+//   console.log("Team B is the winner");
+// } else if (scoreTeamA === scoreTeamB) {
+//   console.log("Both win the trophy!");
+// }
+
+const scoreTeamA = (97 + 112 + 101) / 3;
+const scoreTeamB = (109 + 95 + 106) / 3;
+
+console.log(scoreTeamA, scoreTeamB);
+
+if (scoreTeamA > scoreTeamB && scoreTeamA >= 100) {
+  console.log("Team A is the winner");
+} else if (scoreTeamA < scoreTeamB && scoreTeamB >= 100) {
+  console.log("Team B is the winner");
+} else if (scoreTeamA === scoreTeamB && scoreTeamA >= 100) {
+  console.log("Both win the trophy!");
+} else {
+  console.log("No one wins the games");
+}
+
+//* The switch Statement
+
+const day = 5;
+
+switch (day) {
+  case 1:
+    console.log("Go to school");
+    console.log("Learn JavaScript");
+    break;
+  case 2:
+    console.log("prepare notes");
+    break;
+  case 3:
+  case 4:
+    console.log("do Practice");
+    break;
+  case 5:
+    console.log("Give test");
+    break;
+  case 6:
+  case 7:
+    console.log("Enjoy");
+    break;
+  default:
+    console.log("Not a valid day");
+}
+
+if (day == 1) {
+  console.log("Go to school");
+  console.log("Learn JavaScript");
+} else if (day == 2) {
+  console.log("prepare notes");
+} else if (day == 3 && day == 4) {
+  console.log("do Practice");
+} else if (day == 5) {
+  console.log("Give test");
+} else if (day == 6 && day == 7) {
+  console.log("Enjoy");
+} else {
+  console.log("Not a valid day");
+}
+
+
+//* Statements and Expressions
+
+//* Expressions (word)
+3 + 4; // 7
+1991;
+true && false && !false; // false
+
+//* Statements (line made with words)
+if (23 > 10) {
+  const str = "23 is bigger";
+}
+
+const me = "Rahul";
+console.log(
+  `I'm ${2024 - 1991} years old ${me}. and ${true && false && !false}`
+);
+
+//* Ternary Operator
+
+const age = 16;
+
+if (age >= 18) {
+  console.log("I am an adult");
+} else {
+  console.log("I am minor");
+}
+
+age >= 18 ? console.log("I am an adult") : console.log("I am minor");
+
+// condition ? if true : if false
+
+const drive = age >= 18 ? "can drive" : "can not drive";
+console.log(drive);
+
+*/
+const meAge = 16;
+const me = "Rahul";
+
+console.log(
+  `I'm ${2024 - 1991} years old ${me}. and I ${
+    meAge >= 18 ? "can" : "can not"
+  } drive a car.`
+);
+
+/* 
+Rahul wants to build a very simple tip calculator for whenever he goes eating in a restaurant. In his country, it's usual to tip 15% if the bill value is between 50 and 300. If the value is different, the tip is 20%.
+
+1. Your task is to calculate the tip, depending on the bill value. Create a variable called 'tip' for this. It's not allowed to use an if/ else statement (If it's easier for you, you can start with an if/ else statement, and then try to convert it to a ternary operator!)
+
+2. Print a string to the console containing the bill value, the tip, and the final value (bill + tip). Example: 'The bill was 275, the tip was 41.25, and the total is 316.25.
+
+TEST DATA:
+value 316.25, 275, 40 and 430
+*/
+
+const bill = 430;
+const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+console.log(
+  `The bill was ${bill}, the tip was ${tip}, and the total is ${bill + tip}.`
+);
