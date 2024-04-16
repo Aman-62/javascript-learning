@@ -48,8 +48,6 @@ function validatePassword(password) {
 }
 console.log(validatePassword("root123"));
 
-*/
-
 //* Function Declarations vs Expressions
 
 // Function Declaration
@@ -70,3 +68,38 @@ const calcAge3 = (birthYear) => 2024 - birthYear;
 const age3 = calcAge3(1990);
 
 console.log(age1, age2, age3);
+*/
+
+//* Function calling other functions
+function greet(name) {
+  return "Hello, " + name + "!";
+}
+
+function welcome() {
+  const userName = "Mohit";
+  const greetingMessage = greet(userName);
+  return greetingMessage;
+}
+
+console.log(welcome());
+
+function calcRectangleArea(width, height) {
+  return width * height;
+}
+function calcRectanglePerimeter(width, height) {
+  return 2 * (width + height);
+}
+
+function displayRectangleInfo(a, b) {
+  const area = calcRectangleArea(a, b);
+  const perimeter = calcRectanglePerimeter(a, b);
+
+  console.log("Rectangle Info:");
+  console.log("Width: " + a);
+  console.log("Height: " + b);
+  console.log("Area: " + area);
+  console.log("Perimeter: " + perimeter);
+}
+
+displayRectangleInfo(5, 3);
+displayRectangleInfo(10, 20);
