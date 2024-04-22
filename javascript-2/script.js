@@ -137,13 +137,11 @@ function checkWinner(avgTeamA, avgTeamB) {
 
 console.log(avgA, avgB);
 checkWinner(avgA, avgB);
-*/
 
 //* Arrays
 const friend1 = "Rahul";
 const friend2 = "Vishal";
 const friend3 = "Raj";
-console.log(friend1, friend2, friend3);
 
 // method 1
 const friends = ["Rahul", "Vishal", "Raj"];
@@ -151,9 +149,233 @@ console.log(friends);
 
 // method 2
 const birthYears = new Array(1998, 2002, 1990, 2000);
-console.log(birthYears);
 
 console.log(friends[0]);
 console.log(friends[2]);
 
 console.log(friends.length);
+
+// add an elements
+friends.push("Mohit"); // last
+friends.unshift("Ram"); // starting
+console.log(friends);
+
+// remove an element
+friends.pop(); // last
+friends.shift(); // starting
+console.log(friends);
+
+console.log(friends.indexOf("Vishal"));
+console.log(friends.indexOf("Ram"));
+
+console.log(friends.includes("Raj"));
+
+if (friends.includes("Vishal")) {
+  console.log("You have a friend called Vishal.");
+}
+
+
+//* Objects
+
+const rajatArray = [
+  "Rajat",
+  "Kumar",
+  2024 - 1998,
+  "Developer",
+  ["Rahul", "Vishal", "Raj"],
+];
+console.log(rajatArray[4][1]);
+
+const rajatObj = {
+  firstName: "Rajat",
+  lastName: "Kumar",
+  age: 2024 - 1998,
+  job: "Developer",
+  friends: ["Rahul", "Vishal", "Raj"],
+};
+console.log(rajatObj);
+
+// dot notation & bracket notation
+console.log(rajatObj.lastName);
+console.log(rajatObj["lastName"]);
+
+const nameKey = "Name";
+console.log(rajatObj["first" + nameKey]);
+console.log(rajatObj["last" + nameKey]);
+
+// const interestedIn = prompt(
+//   "What do you want to know about Rajat? Choose between firstName, lastName, age, job and friends"
+// );
+
+// if (rajatObj[interestedIn]) {
+//   console.log(rajatObj[interestedIn]);
+// } else {
+//   console.log(
+//     "Wrong request! Choose between firstName, lastName, age, job and friends"
+//   );
+// }
+
+// add
+rajatObj.address = "Delhi";
+rajatObj["twitter"] = "rajat_27";
+
+// update
+rajatObj.age = 27;
+
+console.log(rajatObj);
+
+console.log(
+  `${rajatObj.firstName}} has ${rajatObj.friends.length} friends, and his best friend is called ${rajatObj.friends[0]}`
+);
+
+const rajatObj = {
+  firstName: "Rajat",
+  lastName: "Kumar",
+  birthYear: 1998,
+  job: "Developer",
+  friends: ["Rahul", "Vishal", "Raj"],
+  hasDriversLicense: true,
+
+  // calcAge: function (birthYear) {
+  //   return 2024 - birthYear;
+  // },
+
+  // calcAge: function () {
+  //   // console.log(this);
+  //   return 2024 - this.birthYear;
+  // },
+
+  calcAge: function () {
+    // creating new key value pair, once the methods is called
+    this.age = 2024 - this.birthYear;
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()} years old ${
+      this.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
+  },
+};
+
+// console.log(rajatObj.calcAge(1998));
+// console.log(rajatObj["calcAge"](1998));
+
+console.log(rajatObj.calcAge());
+console.log(rajatObj.age);
+console.log(rajatObj.age);
+console.log(rajatObj.age);
+console.log(rajatObj.age);
+
+// Rajat is a 46 years old developer, and he has a/no driver's license.
+console.log(rajatObj.getSummary());
+
+
+//* Coding Challenge #5
+// Rahul is still building his tip calculator, using the same rules as before: Tip 15% if the bill value is between 50 and 300. If the value is different, the tip is 20%.
+
+// 1. Write a function 'calcTip' that takes any bill value as an input and returns the corresponding tip, calculated based on the rules above.
+// 2. And now let's use arrays! So create an array 'bills; containing the test data below.
+// 3. Create an array 'tips' containing the tip value for each bill, calculated from the function function you created before.
+// 4. Create an array 'total' containing the total values, bill + tip.
+
+// Test Data: 125, 555, and 44
+
+const calcTip = (bill) =>
+  bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+const bills = [125, 555, 44];
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+console.log(bills, tips, total);
+
+//* Coding Challenge #6
+
+// Let's go back to Rahul and Vishal comparing their BMIs! this time. let's use objects to implement the calculations! Remember: BMI = mass / height ** 2 = mass / (height * height).
+
+// 1. For each of them, create an object with properties for their full name, mass and height (Rahul Sharma and Vishal Gupta)
+// 2. Create a 'calBMI' method on each objects to calculate the BMI (the same method on both objects).
+// 3. Log to the console who has the higher BMI, together with the full name and respective BMI. Example: "Rahul Sharma's BIM (28.3) is higher than Vishal Gupta's BMI (23.9)!"
+
+// Test Data: Rahul weight 78 kg and 1.69 m tall Vishal weight 92 kg and 1.95 m tall
+
+const rahul = {
+  fullName: "Rahul Sharma",
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    this.BMI = this.mass / this.height ** 2;
+    return this.BMI;
+  },
+};
+const vishal = {
+  fullName: "Vishal Gupta",
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    this.BMI = this.mass / this.height ** 2;
+    return this.BMI;
+  },
+};
+rahul.calcBMI();
+vishal.calcBMI();
+
+rahul.BMI > vishal.BMI
+  ? console.log(
+      `${rahul.fullName}'s BIM (${rahul.BMI}) is higher than ${vishal.fullName}'s BMI (${vishal.BMI})!`
+    )
+  : console.log(
+      `${vishal.fullName}'s BMI (${vishal.BMI}) is higher than ${rahul.fullName}'s BIM (${rahul.BMI})!`
+    );
+
+// Iteration The for Loop
+
+// console.log("Lifting weights repetition 1");
+// console.log("Lifting weights repetition 2");
+// console.log("Lifting weights repetition 3");
+// console.log("Lifting weights repetition 4");
+// console.log("Lifting weights repetition 5");
+// console.log("Lifting weights repetition 6");
+// console.log("Lifting weights repetition 7");
+// console.log("Lifting weights repetition 8");
+// console.log("Lifting weights repetition 9");
+// console.log("Lifting weights repetition 10");
+
+// for loop keeps running while condition is true
+// 1. deceleration
+// 2. condition
+// 3. updating
+
+for (let x = 1; x <= 10; x++) {
+  console.log("Lifting weights repetition " + x);
+}
+
+// working
+// let x = 1; true; CODE; x = 2
+// true; CODE; x = 3
+// true; CODE; x = 4
+// ....
+// true; CODE; x = 9
+// true; CODE; x = 10
+// true; CODE; x = 11
+// false; EXIT
+
+for (let x = 2; x <= 20; x = x + 2) {
+  console.log(x);
+}
+
+
+*/
+
+const rajatArray = [
+  "Rajat",
+  "Kumar",
+  2024 - 1998,
+  "Developer",
+  ["Rahul", "Vishal", "Raj"],
+];
+
+for (let i = 0; i < rajatArray.length; i++) {
+  console.log(rajatArray[i]);
+}
