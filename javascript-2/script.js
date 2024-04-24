@@ -365,9 +365,35 @@ for (let x = 2; x <= 20; x = x + 2) {
   console.log(x);
 }
 
+const rajatArray = [
+  "Rajat",
+  "Kumar",
+  2024 - 1998,
+  "Developer",
+  ["Rahul", "Vishal", "Raj"],
+];
+const types = [];
 
-*/
+// looping arrays
+for (let i = 0; i < rajatArray.length; i++) {
+  // console.log(rajatArray[i]);
+  // console.log(typeof rajatArray[i]);
 
+  // filling types array
+  // types[i] = typeof rajatArray[i];
+  types.push(typeof rajatArray[i]);
+}
+console.log(types);
+
+const years = [1991, 2007, 1979, 2020];
+const ages = [];
+for (let i = 0; i < years.length; i++) {
+  ages.push(2024 - years[i]);
+}
+console.log(ages);
+
+
+// break and continue
 const rajatArray = [
   "Rajat",
   "Kumar",
@@ -376,6 +402,71 @@ const rajatArray = [
   ["Rahul", "Vishal", "Raj"],
 ];
 
+console.log("---ONLY STRING---");
 for (let i = 0; i < rajatArray.length; i++) {
+  if (typeof rajatArray[i] !== "string") continue;
+
+  console.log(rajatArray[i], typeof rajatArray[i]);
+}
+
+console.log("---STOP WITH NUMBER---");
+for (let i = 0; i < rajatArray.length; i++) {
+  if (typeof rajatArray[i] === "number") break;
+
+  console.log(rajatArray[i], typeof rajatArray[i]);
+}
+
+// looping backwards
+// 0, 1, 2, 3, 4
+// 4, 3, 2, 1, 0
+
+for (let i = rajatArray.length - 1; i >= 0; i--) {
   console.log(rajatArray[i]);
+}
+
+for (let x = 1; x <= 5; x++) {
+  console.log(`--------------- Starting exercise ${x}`);
+  for (let y = 1; y <= 5; y++) {
+    console.log(`Exercise ${x} Lifting weights repetition ${y}`);
+  }
+}
+
+// let x = 1; true; code
+//                  let y = 1; true; code; y++
+//                  y = 2; true; code; y++
+//                  y = 3; true; code; y++
+//                  y = 4; true; code; y++
+//                  y = 5; true; code; y++
+//                  y = 6; false; exit; x++
+// x = 2; true; code
+//                  let y = 1; true; code; y++
+//                  y = 2; true; code; y++
+//                  y = 3; true; code; y++
+//                  y = 4; true; code; y++
+//                  y = 5; true; code; y++
+//                  y = 6; false; exit; x++
+
+
+
+
+*/
+
+// while loop
+let rep = 1;
+
+while (rep <= 10) {
+  // console.log(`Lifting weights repetition ${rep}`);
+  rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6 + 1);
+// Math.random() =>  0.0000001, 0.99999999
+// Math.random() * 6  => 0.0000006, 5.9999999
+// Math.random() * 6 + 1 => 1.00000006, 6.99999999
+// Math.trunc(Math.random() * 6 + 1) => 1, 6
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6 + 1);
+  if (dice == 6) console.log("Loop is ending");
 }
