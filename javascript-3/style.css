@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Press Start 2P", cursive;
+  background-color: #222;
+  color: #eee;
+}
+
+.btn {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header {
+  margin: 1rem;
+}
+.main-heading {
+  /* font-size: 3rem; */
+  word-spacing: -10px;
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.secretNumber {
+  font-size: 2rem;
+  background-color: #eee;
+  color: #111;
+  text-align: center;
+  width: 9rem;
+  aspect-ratio: 2 / 1.2;
+  border-radius: 8px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main {
+  margin: 1rem;
+  /* text-align: center; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.col-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input {
+  font-size: 2rem;
+  font-family: "Press Start 2P", cursive;
+  text-align: center;
+  margin: 1rem 0;
+  width: 9rem;
+  aspect-ratio: 2 / 1.2;
+  border: 4px solid #111;
+  border-radius: 8px;
+}

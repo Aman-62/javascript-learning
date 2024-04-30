@@ -2,12 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <title>Game</title>
   </head>
   <body>
-    <h1>DOM</h1>
+    <header>
+      <div class="nav">
+        <button class="btn restart">Restart</button>
+        <p>< 1 to 20 ></p>
+      </div>
+      <h1 class="main-heading">Guess The Number</h1>
+      <p class="secretNumber">?</p>
+    </header>
+    <main>
+      <div class="col col-1">
+        <p>Chances <span class="chances">20</span></p>
+        <p class="status">Game Status...</p>
+        <p>HighScore: <span class="score">0</span></p>
+      </div>
 
+      <div class="col col-2">
+        <input type="number" class="input" />
+        <br />
+        <button class="btn check">Submit</button>
+      </div>
+    </main>
+    <!-- js -->
     <script src="./script.js"></script>
   </body>
 </html>
