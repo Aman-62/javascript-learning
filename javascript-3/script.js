@@ -10,47 +10,78 @@ document.querySelector(".second-para").textContent = "Hello World";
 document.querySelector(".input").value = 10;
 */
 
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let chances = 20;
-document.querySelector(".secretNumber").textContent = secretNumber;
+let highScore = 0;
+
+const displayMessage = function (msg) {
+    document.querySelector(".status").textContent = msg;
+};
 
 document.querySelector(".check").addEventListener("click", () => {
-  const guess = Number(document.querySelector(".input").value);
+    const guess = Number(document.querySelector(".input").value);
 
-  // console.log(guess, typeof guess);
+    if (!guess) {
+        displayMessage("🔴 No number!");
+    } else if (guess === secretNumber) {
+        displayMessage("🟢 Correct number!");
+        document.querySelector(".secretNumber").textContent = secretNumber;
+        document.querySelector("body").style.backgroundColor = "#60b347";
 
-  if (!guess) {
-    document.querySelector(".status").textContent = "🔴 No number!";
-  } else if (guess === secretNumber) {
-    document.querySelector(".status").textContent = "🟢 Correct number!";
-    document.querySelector("body").style.backgroundColor = "#60b347";
-  } else if (guess > secretNumber) {
-    if (chances > 1) {
-      document.querySelector(".status").textContent = "🟠 Too high!";
-      chances--;
-      document.querySelector(".chances").textContent = chances;
-    } else {
-      chances = 0;
-      document.querySelector(".chances").textContent = chances;
-      document.querySelector(".status").textContent = "🔴 Game over!";
+        if (chances > highScore) {
+            highScore = chances;
+            document.querySelector(".score").textContent = highScore;
+        }
+    } else if (guess !== secretNumber) {
+        if (chances > 1) {
+            displayMessage(
+                guess > secretNumber ? "🟠 Too high!" : "🟠 Too low!"
+            );
+            chances--;
+            document.querySelector(".chances").textContent = chances;
+        } else {
+            displayMessage("🔴 Game over!");
+            chances = 0;
+            document.querySelector(".chances").textContent = chances;
+        }
     }
-  } else if (guess < secretNumber) {
-    if (chances > 1) {
-      document.querySelector(".status").textContent = "🟠 Too low!";
-      chances--;
-      document.querySelector(".chances").textContent = chances;
-    } else {
-      chances = 0;
-      document.querySelector(".chances").textContent = chances;
-      document.querySelector(".status").textContent = "🔴 Game over!";
-    }
-  }
 });
 
-// Coding Challenge #1
-// Implement a game rest functionality, so that the player can make a new guess!
+document.querySelector(".restart").addEventListener("click", () => {
+    chances = 20;
+    document.querySelector(".chances").textContent = chances;
 
-// 1. Select the element with the 'restart' class and attach a click event handler
-// 2. In the handlerFunction, restore initial values of the score and number variable
-// 3. Restore the initial condition of the message, number, score and guess input field
-// 4. Also restore the original background color (#222)
+    secretNumber = Math.trunc(Math.random() * 20) + 1;
+    document.querySelector(".secretNumber").textContent = "?";
+
+    displayMessage("Game Status...");
+    document.querySelector(".input").value = "";
+    document.querySelector("body").style.backgroundColor = "#222";
+});
+
+/*
+
+Coding Challenge #1
+Implement a game rest functionality, so that the player can make a new guess!
+
+1. Select the element with the 'restart' class and attach a click event handler
+2. In the handlerFunction, restore initial values of the chances and number variable
+3. Restore the initial condition of the message, number, chances and guess input field
+4. Also restore the original background color (#222)
+
+Events: there are multiple events in a website
+> When a user clicks the mouse
+> When a web page has loaded
+> When an image has been loaded
+> When the mouse moves over an element
+> When an input field is changed
+> When an HTML form is submitted
+> When a user strokes a key
+
+function hello() {}
+element.addEventListener("click", hello)
+element.addEventListener("click", function hello2() {})
+element.addEventListener("click", function() {})
+element.addEventListener("click", () => {})
+
+*/
