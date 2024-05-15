@@ -50,6 +50,36 @@ const restaurant = {
     },
 };
 
+const fullName = "Rahul Sharma";
+
+console.log(fullName[0]);
+console.log(fullName[1]);
+console.log(fullName[2]);
+console.log("A347"[2]);
+
+console.log(fullName.length);
+console.log(fullName.indexOf("h"));
+console.log(fullName.lastIndexOf("h"));
+console.log(fullName.indexOf("Sharma"));
+
+console.log(fullName.slice(6));
+console.log(fullName.slice(3, 8));
+console.log(fullName);
+console.log(fullName.slice(-3));
+console.log(fullName.slice(1, -3));
+
+console.log(fullName.toLowerCase());
+console.log(fullName.toUpperCase());
+console.log(fullName.replace("Sh", "V"));
+console.log(fullName.concat(" Hello"));
+console.log(fullName.startsWith("Ra"));
+console.log("   rahul@gmail.com    ".trim());
+console.log("   rahul@gmail.com    ".trimEnd());
+console.log("   rahul@gmail.com    ".trimStart());
+console.log("10".padEnd(4, ".00"));
+
+/*
+
 const ordersSet = new Set([
     "Pasta",
     "Pizza",
@@ -78,8 +108,6 @@ console.log(staffUniqueSet);
 
 const staffUniqueArr = [...new Set(staff)];
 console.log(staffUniqueArr);
-
-/*
 
 console.log(restaurant);
 
