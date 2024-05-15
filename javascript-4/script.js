@@ -1,52 +1,109 @@
 "use strict";
 
+const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+const openingHours = {
+    [weekdays[3]]: {
+        open: 12,
+        close: 22,
+    },
+    [weekdays[4]]: {
+        open: 11,
+        close: 23,
+    },
+    [weekdays[5]]: {
+        open: 0,
+        close: 24,
+    },
+};
+
 const restaurant = {
     name: "Subway",
     location: "123 Main St",
     categories: ["Italian", "Indian", "Vegetarian", "Organic"],
     starterMenu: ["Fries", "Soup", "Salad"],
     mainMenu: ["Pizza", "Pasta", "Burger"],
-    openingHours: {
-        thu: {
-            open: 12,
-            close: 22,
-        },
-        fri: {
-            open: 11,
-            close: 23,
-        },
-        sat: {
-            open: 0,
-            close: 24,
-        },
-    },
+    openingHours,
 
-    order: function (starterIndex, mainIndex) {
+    order(starterIndex, mainIndex) {
         return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
     },
 
-    orderDelivery: function ({
+    orderDelivery({
         time = "20:00",
         address,
         mainIndex = 0,
         starterIndex = 0,
     }) {
-        // const {time, address, mainIndex, starterIndex} = obj;
         console.log(
             `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
         );
     },
 
-    orderPasta: function (ing1, ing2, ing3) {
+    orderPasta(ing1, ing2, ing3) {
         console.log(
             `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
         );
     },
-    // orderPizza: function (ing1, ing2) {
-    //     console.log([ing1, ing2]);
-    // },
+    orderPizza(ing1, ing2) {
+        console.log([ing1, ing2]);
+    },
 };
+
+const ordersSet = new Set([
+    "Pasta",
+    "Pizza",
+    "Pizza",
+    "Burger",
+    "Pasta",
+    "Pizza",
+]);
+console.log(ordersSet);
+
+console.log(ordersSet.has("Pizza"));
+console.log(ordersSet.has("Bread"));
+
+ordersSet.add("Garlic Bread");
+ordersSet.add("Garlic Bread");
+
+ordersSet.delete("Pasta");
+
+// ordersSet.clear();
+console.log(ordersSet);
+
+const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+
+const staffUniqueSet = new Set(staff);
+console.log(staffUniqueSet);
+
+const staffUniqueArr = [...new Set(staff)];
+console.log(staffUniqueArr);
+
 /*
+
+console.log(restaurant);
+
+
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+//* for_of
+
+for (let i = 0; i < menu.length; i++) {
+    console.log(`${i + 1}:  ${menu[i]}`);
+}
+
+// for (let element of menu) {
+//     console.log(element);
+// }
+
+for (let [i, el] of menu.entries()) {
+    console.log(`${i + 1}: ${el}`);
+}
+
+// ["a", "b", "c"].entries()
+// [[0, "a"], [1, "b"], [2, "c"]]
+
 
 
 restaurant.numGuests = 0;
@@ -239,7 +296,6 @@ console.log(p, q, r, s);
 const [i = 1, j = 1, k = 1] = [8, 9];
 console.log(i, j, k);
 
-*/
 
 //* Challenge 1
 
@@ -301,3 +357,16 @@ console.log(players1Final);
 //* 5
 const { team1, x: draw, team2 } = game.odds;
 console.log(team1, draw, team2);
+//* 6
+const printGoals = function (...players) {
+    console.log(players);
+    console.log(`${players.length} goals were scored.`);
+};
+printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
+printGoals(...game.scored);
+
+//* 7
+team1 < team2 && console.log("Team 1 is more likely to win");
+team1 > team2 && console.log("Team 2 is more likely to win");
+
+*/
