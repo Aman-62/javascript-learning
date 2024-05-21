@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Baking-App</title>
+    </head>
+    <body>
+        <nav class="container">
+            <h2 class="logo">MyBank</h2>
+
+            <p class="welcome">Log in to get started</p>
+
+            <form class="login">
+                <input
+                    type="text"
+                    placeholder="USER"
+                    class="login-input login-input-user"
+                />
+                <input
+                    type="text"
+                    placeholder="PIN"
+                    maxlength="4"
+                    class="login-input login-input-pin"
+                />
+                <button class="login-btn">&check;</button>
+            </form>
+        </nav>
+
+        <!-- *APP -->
+        <main class="app container">
+            <!-- *BALANCE -->
+            <div class="balance">
+                <div>
+                    <p class="balance-label">Current Balance</p>
+                    <p class="balance-date">
+                        As of <span class="date">05/08/2023</span>
+                    </p>
+                </div>
+                <p class="balance-value">56,789₹</p>
+            </div>
+
+            <!-- *SUMMARY -->
+            <div class="summary">
+                <p class="summary-label">In</p>
+                <p class="summary-value summary-value-in">0000₹</p>
+                <p class="summary-label">Out</p>
+                <p class="summary-value summary-value-out">0000₹</p>
+                <p class="summary-label">Interest</p>
+                <p class="summary-value summary-value-interest">0000₹</p>
+                <button class="btn-sort">SORT</button>
+            </div>
+
+            <section class="stats">
+                <!-- *MOVEMENTS -->
+                <div class="movements">
+                    <div class="movements-row">
+                        <div class="movements-type movements-type-deposit">
+                            2 deposit
+                        </div>
+                        <div class="movements-date">3 days ago</div>
+                        <div class="movements-value">2000₹</div>
+                    </div>
+
+                    <div class="movements-row">
+                        <div class="movements-type movements-type-withdraw">
+                            1 withdraw
+                        </div>
+                        <div class="movements-date">4 days ago</div>
+                        <div class="movements-value">4000₹</div>
+                    </div>
+                </div>
+
+                <aside>
+                    <!-- *OPERATION: TRANSFERS -->
+                    <div class="operation operation-transfer">
+                        <h2>Transfer money</h2>
+                        <form class="form form-transfer">
+                            <input
+                                type="text"
+                                class="form-input form-input-to"
+                                placeholder="Transfer to"
+                            />
+                            <input
+                                type="number"
+                                class="form-input form-input-amount"
+                                placeholder="Amount"
+                            />
+                            <button class="form-btn form-btn-transfer">
+                                &rarr;
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- *OPERATION: LOAN -->
+                    <div class="operation operation-loan">
+                        <h2>Request loan</h2>
+                        <form class="form form-loan">
+                            <input
+                                type="number"
+                                class="form-input form-input-loan-amount"
+                                placeholder="Amount"
+                            />
+                            <button class="form-btn form-btn-loan">
+                                &rarr;
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- *OPERATION: CLOSE -->
+                    <div class="operation operation-close">
+                        <h2>Close account</h2>
+                        <form class="form form-close">
+                            <input
+                                type="text"
+                                class="form-input form-input-user"
+                                placeholder="Confirm USER"
+                            />
+                            <input
+                                type="password"
+                                maxlength="6"
+                                class="form-input form-input-pin"
+                                placeholder="Confirm PIN"
+                            />
+                            <button class="form-btn form-btn-close">
+                                &rarr;
+                            </button>
+                        </form>
+                    </div>
+                </aside>
+            </section>
+        </main>
+
+        <script src="./script.js"></script>
+    </body>
+</html>

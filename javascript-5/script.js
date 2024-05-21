@@ -56,8 +56,6 @@ console.log(train);
 console.log(rahul);
 
 
-*/
-
 //* First-class Vs Higher-order functions
 // First-class Function
 //? JavaScript treats functions as first-class citizens
@@ -81,3 +79,40 @@ function count() {
         counter++;
     };
 }
+
+// Hello World => helloworld
+const oneWord = function (str) {
+    return str.replace(/ /g, "").toLowerCase();
+};
+
+// hello world bye mars => HELLO world
+const upperFirstWord = function (str) {
+    const [first, ...others] = str.split(" ");
+    return [first.toUpperCase(), ...others].join(" ");
+};
+
+const transformer = function (str, fn) {
+    console.log(`Original string: ${str}`);
+
+    console.log(`Transformed by: ${fn.name}`);
+    console.log(`Transformed string: ${fn(str)}`);
+};
+
+transformer("Rahul sharma", oneWord);
+
+
+*/
+
+function greet(greeting) {
+    return function (name) {
+        console.log(`${greeting}, ${name}`);
+    };
+}
+
+const greetHey = greet("Hey");
+const greetGm = greet("Good morning");
+
+greetHey("Rahul");
+greetGm("Vishal");
+
+greet("Hello")("Vijay");
