@@ -72,12 +72,10 @@ const displayMovements = (movements) => {
         containerMovements.insertAdjacentHTML("afterbegin", html);
     });
 };
-
 const calcDisplayBalance = (acc) => {
     acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
     labelBalance.textContent = `${acc.balance}₹`;
 };
-
 const calcDisplaySummary = (acc) => {
     const incomes = acc.movements
         .filter((mov) => mov > 0)
@@ -96,7 +94,6 @@ const calcDisplaySummary = (acc) => {
     labelSumOut.textContent = `${out}₹`;
     labelSumInterest.textContent = `${interest}₹`;
 };
-
 const createUsernames = (accs) => {
     accs.forEach(function (acc) {
         acc.username = acc.owner
@@ -107,7 +104,6 @@ const createUsernames = (accs) => {
     });
 };
 createUsernames(accounts);
-
 const updateUI = function (acc) {
     // display movements
     displayMovements(acc.movements);
@@ -143,7 +139,6 @@ btnLogin.addEventListener("click", function (e) {
         updateUI(currentAccount);
     }
 });
-
 btnTransfer.addEventListener("click", function(e) {
     e.preventDefault();
     const amount = Number(inputTransferAmount.value);
@@ -166,6 +161,19 @@ btnTransfer.addEventListener("click", function(e) {
 
 
 })
+btnLoan.addEventListener("click", function(e) {
+    e.preventDefault();
+    const loanAmount = Number(inputLoanAmount.value)
+    if ( loanAmount &&
+        loanAmount > 0 &&
+        loanAmount <= currentAccount.balance
+    ) {
+        currentAccount.movements.push(loanAmount);
+        updateUI(currentAccount);
+        inputLoanAmount.value = "";
+        inputLoanAmount.blur();
+    }
+})
 btnClose.addEventListener("click", function(e) {
     e.preventDefault();
 
@@ -181,11 +189,19 @@ btnClose.addEventListener("click", function(e) {
         containerApp.style.opacity = 0;
     }
     inputCloseUsername.value = inputClosePin.value = "";
+    inputCloseUsername.blur();
+    inputClosePin.blur();
 })
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// [b, a, -400, 3000, -650, -130, 70, 1300]
+// [200, b, a, 3000, -650, -130, 70, 1300]
+// [200, 450, b, a, -650, -130, 70, 1300]
+// ...
+// [200, 450, -400, 3000, -650, -130, b, a]
 
 /*
+
 
 
 let arr = ["a", "b", "c", "d", "e"];
@@ -340,4 +356,61 @@ const account = accounts.find((acc) => {
 
 console.log(account);
 
+
+console.log(movements);
+console.log(movements.includes(-300));
+console.log(movements.includes(450));
+
+//* SOME
+const anyWithdrew = movements.some((mov) => mov < 0);
+console.log(anyWithdrew);
+
+//* EVERY
+const allWithdrew = movements.every((mov) => mov < 0);
+console.log(allWithdrew);
+
+//* FLAT
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2, 3], [4, 5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+
+const overallBalance = accounts
+    .map((acc) => acc.movements)
+    .flat()
+    .reduce((acc, mov) => acc+mov ,0);
+
+console.log(overallBalance);
+
+//* FLATMAP
+
+const overallBalance2 = accounts
+    .flatMap((acc) => acc.movements)
+    .reduce((acc, mov) => acc+mov ,0);
+
+console.log(overallBalance2);
+
+
 */
+
+const owners = accounts.map((acc) => acc.owner)
+console.log(owners);
+console.log(owners.sort());
+
+console.log(movements);
+
+// return < 0 ===>> a, b
+// return > 0 ===>> b, a
+const movArr = movements.sort((a, b) => {
+    if (b < a) {
+        return 1;
+    } else if (b > a) {
+        return -1
+    }
+});
+
+console.log(movArr);
+console.log(movements);
