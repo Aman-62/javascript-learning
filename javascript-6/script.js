@@ -57,10 +57,12 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-const displayMovements = (movements) => {
+const displayMovements = (movements, sort = false) => {
     containerMovements.innerHTML = "";
 
-    movements.forEach(function (el, i) {
+    const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+    movs.forEach(function (el, i) {
         const type = el > 0 ? "deposit" : "withdraw";
         const html = `
 <div class="movements-row">
@@ -105,6 +107,10 @@ const createUsernames = (accs) => {
 };
 createUsernames(accounts);
 const updateUI = function (acc) {
+    let now = new Date();
+    console.log(now);
+    // update date
+    labelDate.textContent = `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`
     // display movements
     displayMovements(acc.movements);
     // display balance
@@ -192,13 +198,13 @@ btnClose.addEventListener("click", function(e) {
     inputCloseUsername.blur();
     inputClosePin.blur();
 })
+let sorted = false;
+btnSort.addEventListener("click", function() {
+    displayMovements(currentAccount.movements, !sorted);
+    sorted = !sorted
+})
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-// [b, a, -400, 3000, -650, -130, 70, 1300]
-// [200, b, a, 3000, -650, -130, 70, 1300]
-// [200, 450, b, a, -650, -130, 70, 1300]
-// ...
-// [200, 450, -400, 3000, -650, -130, b, a]
 
 /*
 
@@ -393,24 +399,55 @@ const overallBalance2 = accounts
 
 console.log(overallBalance2);
 
-
-*/
-
 const owners = accounts.map((acc) => acc.owner)
 console.log(owners);
 console.log(owners.sort());
 
 console.log(movements);
 
-// return < 0 ===>> a, b
-// return > 0 ===>> b, a
-const movArr = movements.sort((a, b) => {
-    if (b < a) {
-        return 1;
-    } else if (b > a) {
-        return -1
-    }
-});
+
+
+// return < 0 : a, b (keep order)
+// return > 0 : b, a (switch order)
+
+
+let i = 1;
+// const movArr = movements.sort((a, b) => {
+//     if (a > b) return 1
+//     if (a < b) return -1
+// });
+
+const movArr = movements.sort((a, b) => a - b);
+
+// const movArr = movements.sort((a, b) => {
+//     if (a > b) return -1
+//     if (a < b) return 1
+// });
 
 console.log(movArr);
 console.log(movements);
+*/
+
+
+// const now = new Date();
+// console.log(now);
+
+// console.log(new Date('Aug 02 2024 17:05:41'));
+// console.log(new Date('December 24, 2015'));
+// console.log(new Date(2026, 10, 19, 15, 23, 5));
+// console.log(new Date(2026, 10, 30));
+// console.log(new Date(0));
+// console.log(new Date(2*24*60*60*1000));
+
+// const future = new Date(2037, 10, 19, 15, 23);
+// console.log(future);
+// console.log(future.getFullYear());
+// console.log(future.getMonth());
+// console.log(future.getDate());
+// console.log(future.getHours());
+// console.log(future.getMinutes());
+// console.log(future.getSeconds());
+// console.log(future.getTime());
+// console.log(new Date(2142237180000));
+
+console.log(new Date('Feb 29 2024').getMonth());
