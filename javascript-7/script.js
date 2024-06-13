@@ -27,9 +27,11 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+/*
+
 ///////////////////////////////
 
-// Selecting Elements
+//* Selecting Elements
 
 console.log(document.documentElement);
 console.log(document.head);
@@ -45,7 +47,7 @@ console.log(allButtons);
 
 console.log(document.getElementsByClassName("btn"));
 
-// Creating and Inserting Elements
+//* Creating and Inserting Elements
 // .insertAdjacentHTML()
 
 const message = document.createElement("div");
@@ -59,8 +61,76 @@ header.append(message);
 // header.before(message);
 // header.after(message);
 
-// Delete elements
+//* Delete elements
 
 document.querySelector(".btn--close-cookie").addEventListener("click", () => {
     message.parentElement.removeChild(message);
+});
+
+//* Styles
+
+message.style.backgroundColor = "#37383d";
+message.style.width = "104%";
+
+console.log(message.style.color);
+console.log(message.style.backgroundColor);
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+    Number.parseFloat(getComputedStyle(message).height) + 50 + "px";
+
+// document.documentElement.style.setProperty("--color-primary", "pink");
+
+//* Attributes
+const logo = document.querySelector(".nav__logo");
+
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+console.log(logo.demo);
+console.log(logo.getAttribute("demo"));
+logo.setAttribute("example", "example-value");
+
+// Data attributes
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add("a", "b", "c");
+logo.classList.remove("c");
+logo.classList.toggle("z");
+console.log(logo.classList.contains("y"));
+
+*/
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnScrollTo.addEventListener("click", (e) => {
+    const s1coords = section1.getBoundingClientRect();
+    console.log("section1", s1coords);
+
+    console.log("button", e.target.getBoundingClientRect());
+
+    console.log("Current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
+
+    console.log(
+        "Height/width viewport",
+        document.documentElement.clientHeight,
+        document.documentElement.clientWidth
+    );
+
+    // Scrolling
+    // window.scrollTo(
+    //     s1coords.left + window.pageXOffset,
+    //     s1coords.top + window.pageYOffset
+    // );
+
+    window.scrollTo({
+        left: s1coords.left + window.pageXOffset,
+        top: s1coords.top + window.pageYOffset,
+        behavior: "smooth",
+    });
 });
