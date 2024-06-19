@@ -2,9 +2,12 @@
 
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
-const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnCloseModal = document.querySelector(".btn--close-modal");
+const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
 
+//* Modal window
 const openModal = (e) => {
     e.preventDefault();
     modal.classList.remove("hidden");
@@ -16,10 +19,10 @@ const closeModal = () => {
     overlay.classList.add("hidden");
 };
 
-for (let i = 0; i < btnsOpenModal.length; i++) {
-    btnsOpenModal[i].addEventListener("click", openModal);
-}
+btnsOpenModal.forEach((btn) => btn.addEventListener("click", openModal));
+
 btnCloseModal.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !modal.classList.contains("hidden")) {
@@ -27,8 +30,42 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-/*
+//* Button scrolling
 
+btnScrollTo.addEventListener("click", (e) => {
+    const s1coords = section1.getBoundingClientRect();
+    console.log("section1", s1coords);
+
+    console.log("button", e.target.getBoundingClientRect());
+
+    console.log("Current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
+
+    console.log(
+        "Height/width viewport",
+        document.documentElement.clientHeight,
+        document.documentElement.clientWidth
+    );
+
+    // Scrolling
+    // window.scrollTo(
+    //     s1coords.left + window.pageXOffset,
+    //     s1coords.top + window.pageYOffset
+    // );
+
+    // window.scrollTo({
+    //     left: s1coords.left + window.pageXOffset,
+    //     top: s1coords.top + window.pageYOffset,
+    //     behavior: "smooth",
+    // });
+
+    section1.scrollIntoView({ behavior: "smooth" });
+});
+
+//* Page navigation
+
+/*
+///////////////////////////////
+///////////////////////////////
 ///////////////////////////////
 
 //* Selecting Elements
@@ -103,39 +140,6 @@ logo.classList.remove("c");
 logo.classList.toggle("z");
 console.log(logo.classList.contains("y"));
 
-*/
-
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
-
-btnScrollTo.addEventListener("click", (e) => {
-    const s1coords = section1.getBoundingClientRect();
-    console.log("section1", s1coords);
-
-    console.log("button", e.target.getBoundingClientRect());
-
-    console.log("Current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
-
-    console.log(
-        "Height/width viewport",
-        document.documentElement.clientHeight,
-        document.documentElement.clientWidth
-    );
-
-    // Scrolling
-    // window.scrollTo(
-    //     s1coords.left + window.pageXOffset,
-    //     s1coords.top + window.pageYOffset
-    // );
-
-    // window.scrollTo({
-    //     left: s1coords.left + window.pageXOffset,
-    //     top: s1coords.top + window.pageYOffset,
-    //     behavior: "smooth",
-    // });
-
-    section1.scrollIntoView({ behavior: "smooth" });
-});
 
 // Events
 
@@ -152,9 +156,9 @@ setTimeout(() => {
     h1.removeEventListener("mouseenter", alertH1);
 }, 3000);
 
-// h1.onmouseenter = function (e) {
-//     console.log("onmouseeneter: You are reading the heading");
-// };
+h1.onmouseenter = function (e) {
+    console.log("onmouseeneter: You are reading the heading");
+};
 
 // rgb(0-255,0-255,0-255)
 const randomInt = (min, max) =>
@@ -187,3 +191,10 @@ document.querySelector(".nav").addEventListener(
     },
     true
 );
+
+const h1 = document.querySelector("h1");
+let value = true;
+console.log(value);
+
+
+*/
