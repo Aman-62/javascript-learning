@@ -133,17 +133,82 @@ nav.addEventListener("mouseout", function (e) {
 
 //* Sticky navigation
 
-const initialCoords = section1.getBoundingClientRect();
-console.log(initialCoords);
+// const initialCoords = section1.getBoundingClientRect();
+// console.log(initialCoords);
 
-window.addEventListener("scroll", function () {
-    // console.log(window.scrollY);
+// window.addEventListener("scroll", function () {
+//     console.log(window.scrollY);
 
-    if (window.scrollY > initialCoords.top) {
+//     if (window.scrollY > initialCoords.top) {
+//         nav.classList.add("sticky");
+//     } else {
+//         nav.classList.remove("sticky");
+//     }
+// });
+
+// const obsCallBack = function (entries, observer) {
+//     // console.log(entries);
+//     // console.log(observer);
+
+//     entries.forEach((entry) => {
+//         console.log(entry);
+//     });
+// };
+
+// const obsOptions = {
+//     root: null,
+//     threshold: 0.1,
+// };
+
+// const observer = new IntersectionObserver(obsCallBack, obsOptions);
+// observer.observe(section1);
+
+const header = document.querySelector(".header");
+const navHeight = nav.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+    const [entry] = entries;
+    // console.log(entry);
+
+    if (!entry.isIntersecting) {
         nav.classList.add("sticky");
     } else {
         nav.classList.remove("sticky");
     }
+};
+
+const stickyNavOpt = {
+    root: null,
+    threshold: 0,
+    rootMargin: `-${navHeight}px`,
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, stickyNavOpt);
+
+headerObserver.observe(header);
+
+//* Reveal Sections
+const allSections = document.querySelectorAll(".section");
+
+const revealSection = function (entries, observer) {
+    const [entry] = entries;
+
+    console.log(entry);
+
+    if (!entry.isIntersecting) return;
+
+    entry.target.classList.remove("section--hidden");
+
+    observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+    root: null,
+    threshold: 0.15,
+});
+
+allSections.forEach(function (section) {
+    sectionObserver.observe(section);
 });
 
 /*
