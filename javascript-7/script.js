@@ -188,29 +188,85 @@ const headerObserver = new IntersectionObserver(stickyNav, stickyNavOpt);
 headerObserver.observe(header);
 
 //* Reveal Sections
-const allSections = document.querySelectorAll(".section");
+// const allSections = document.querySelectorAll(".section");
 
-const revealSection = function (entries, observer) {
+// const revealSection = function (entries, observer) {
+//     const [entry] = entries;
+
+//     if (!entry.isIntersecting) return;
+
+//     entry.target.classList.remove("section--hidden");
+
+//     observer.unobserve(entry.target);
+// };
+
+// const sectionObserver = new IntersectionObserver(revealSection, {
+//     root: null,
+//     threshold: 0.15,
+// });
+
+// allSections.forEach(function (section) {
+//     sectionObserver.observe(section);
+// });
+
+//* Lazy loading images
+const imgTargets = document.querySelectorAll("img[data-src]");
+
+const loadImg = (entries, observer) => {
     const [entry] = entries;
-
-    console.log(entry);
 
     if (!entry.isIntersecting) return;
 
-    entry.target.classList.remove("section--hidden");
+    // replace scr with data-src
+    entry.target.classList.remove("lazy-img");
+
+    entry.target.src = entry.target.dataset.src;
 
     observer.unobserve(entry.target);
 };
 
-const sectionObserver = new IntersectionObserver(revealSection, {
+const imgObserver = new IntersectionObserver(loadImg, {
     root: null,
-    threshold: 0.15,
+    threshold: 0,
+    rootMargin: "200px",
 });
 
-allSections.forEach(function (section) {
-    sectionObserver.observe(section);
-});
+imgTargets.forEach((img) => imgObserver.observe(img));
 
+//* Slider
+const slides = document.querySelectorAll(".slide");
+const btnLeft = document.querySelector(".slider__btn--left");
+const btnRight = document.querySelector(".slider__btn--right");
+
+let curSlide = 0;
+const maxSlide = slides.length;
+
+const slider = document.querySelector(".slider");
+
+const goToSlide = function (slide) {
+    slides.forEach(
+        (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+};
+goToSlide(0);
+
+const nextSlide = function () {
+    if (curSlide === maxSlide - 1) curSlide = 0;
+    else curSlide++;
+
+    goToSlide(curSlide);
+};
+const PrevSlide = function () {
+    if (curSlide === 0) curSlide = maxSlide - 1;
+    else curSlide--;
+
+    goToSlide(curSlide);
+};
+
+// Next slide
+btnRight.addEventListener("click", nextSlide);
+// Prev slide
+btnLeft.addEventListener("click", PrevSlide);
 /*
 ///////////////////////////////
 ///////////////////////////////
